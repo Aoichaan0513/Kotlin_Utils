@@ -22,15 +22,14 @@ fun String.replaceAll(collection: Collection<Pair<String, String>>) = replaceAll
 fun String.replaceAll(vararg pairs: Pair<String, String>) = replaceAll(pairs.asList())
 
 
-fun <T> Collection<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
-    if (this.isNotEmpty()) {
-        buildString {
-            for (i in this.indices)
-                append("${action(this@toString.elementAt(i))}${(i < this@toString.size - 1).getValue(separator, "")}")
-        }.trim()
-    } else {
-        empty
-    }
+fun <T> Collection<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") = if (this.isNotEmpty()) {
+    buildString {
+        for (i in this@toString.indices)
+            append("${action(this@toString.elementAt(i))}${(i < this@toString.size - 1).getValue(separator, "")}")
+    }.trim()
+} else {
+    empty
+}
 
 fun <T> Array<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
     toList().toString(action, empty, separator)
