@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.4.20"
     maven
-    `maven-publish`
 }
 
 val groupId = "jp.aoichaan0513"
@@ -12,11 +11,10 @@ version = "1.1.0"
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
+    api(kotlin("stdlib"))
 }
 
 tasks.withType<KotlinCompile> {
@@ -45,6 +43,5 @@ tasks {
                 }
             }
         }
-
     }
 }
