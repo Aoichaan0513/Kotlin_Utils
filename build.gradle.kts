@@ -7,7 +7,7 @@ plugins {
 
 val groupId = "jp.aoichaan0513"
 group = groupId
-version = "1.1.5"
+version = "1.1.6"
 
 repositories {
     mavenCentral()
@@ -16,6 +16,11 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("joda-time", "joda-time", "2.10.8")
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 tasks.withType<KotlinCompile> {
@@ -40,4 +45,11 @@ uploadArchives.repositories.withConvention(MavenRepositoryHandlerConvention::cla
             }
         }
     }
+}
+
+val sourcesJar: Jar by tasks
+val javadocJar: Jar by tasks
+artifacts {
+    archives(sourcesJar)
+    archives(javadocJar)
 }
