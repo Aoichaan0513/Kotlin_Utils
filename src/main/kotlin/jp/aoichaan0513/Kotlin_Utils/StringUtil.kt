@@ -19,7 +19,8 @@ fun String.replace(map: Map<String, String>): String {
 }
 
 fun String.replace(collection: Collection<Pair<String, String>>) = replace(collection.toMap())
-fun String.replace(vararg pairs: Pair<String, String>) = replace(pairs.toList())
+fun String.replace(iterable: Iterable<Pair<String, String>>) = replace(iterable.toMap())
+fun String.replace(vararg pairs: Pair<String, String>) = replace(pairs.toMap())
 
 
 inline fun <T> Collection<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
@@ -32,8 +33,8 @@ inline fun <T> Collection<T>.toString(action: (T) -> String, empty: String, sepa
         empty
     }
 
-inline fun <T> Array<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
+inline fun <T> Iterable<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
     toList().toString(action, empty, separator)
 
-inline fun <T> Iterable<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
+inline fun <T> Array<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
     toList().toString(action, empty, separator)
