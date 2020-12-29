@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    implementation jp.aoichaan0513:Kotlin_Utils:1.1.5'
+    // implementation 'jp.aoichaan0513:Kotlin_Utils:1.1.5'
     implementation group: 'jp.aoichaan0513', name: 'Kotlin_Utils', version: '1.1.5'
 }
 ```
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    implementation("jp.aoichaan0513:Kotlin_Utils:1.1.5")
+    // implementation("jp.aoichaan0513:Kotlin_Utils:1.1.5")
     implementation("jp.aoichaan0513", "Kotlin_Utils", "1.1.5")
 }
 ```
