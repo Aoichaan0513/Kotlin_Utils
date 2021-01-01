@@ -6,7 +6,9 @@ inline val StringBuffer.trimString
 inline val StringBuilder.trimString
     get() = toString().trim()
 
-fun String.trim(l: Int, truncated: String = "…") = if (length > l) "${substring(0, l - 1)}$truncated" else this
+
+fun String.trim(l: Int, truncated: String = "…") =
+    if (length > l) "${substring(0, l - truncated.length)}$truncated" else this
 
 
 fun String.replace(map: Map<String, String>): String {
@@ -23,6 +25,7 @@ fun String.replace(iterable: Iterable<Pair<String, String>>) = replace(iterable.
 fun String.replace(vararg pairs: Pair<String, String>) = replace(pairs.toMap())
 
 
+@Deprecated("Misleading name. Replace `joinToString`.", ReplaceWith("this.joinToString(empty, separator, action)"))
 inline fun <T> Collection<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
     if (this.isNotEmpty()) {
         buildString {
@@ -33,8 +36,34 @@ inline fun <T> Collection<T>.toString(action: (T) -> String, empty: String, sepa
         empty
     }
 
+@Deprecated("Misleading name. Replace `joinToString`.", ReplaceWith("this.joinToString(empty, separator, action)"))
 inline fun <T> Iterable<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
-    toList().toString(action, empty, separator)
+    toList().joinToString(empty, separator, action)
 
+@Deprecated("Misleading name. Replace `joinToString`.", ReplaceWith("this.joinToString(empty, separator, action)"))
 inline fun <T> Array<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
-    toList().toString(action, empty, separator)
+    toList().joinToString(empty, separator, action)
+
+
+inline fun <T> Collection<T>.joinToString(empty: String, separator: String = ", ", action: (T) -> String) =
+    if (this.isNotEmpty()) {
+        buildString {
+            for (i in this@joinToString.indices)
+                append(
+                    "${action(this@joinToString.elementAt(i))}${
+                        (i < this@joinToString.size - 1).getValue(
+                            separator,
+                            ""
+                        )
+                    }"
+                )
+        }.trim()
+    } else {
+        empty
+    }
+
+inline fun <T> Iterable<T>.joinToString(empty: String, separator: String = ", ", action: (T) -> String) =
+    toList().joinToString(empty, separator, action)
+
+inline fun <T> Array<T>.joinToString(empty: String, separator: String = ", ", action: (T) -> String) =
+    toList().joinToString(empty, separator, action)
