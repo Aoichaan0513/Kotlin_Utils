@@ -27,36 +27,22 @@ fun String.replace(vararg pairs: Pair<String, String>) = replace(pairs.toMap())
 
 @Deprecated("Misleading name. Replace `joinToString`.", ReplaceWith("this.joinToString(empty, separator, action)"))
 inline fun <T> Collection<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
-    if (this.isNotEmpty()) {
-        buildString {
-            for (i in this@toString.indices)
-                append("${action(this@toString.elementAt(i))}${(i < this@toString.size - 1).getValue(separator, "")}")
-        }.trim()
-    } else {
-        empty
-    }
+    joinToString(empty, separator, action)
 
 @Deprecated("Misleading name. Replace `joinToString`.", ReplaceWith("this.joinToString(empty, separator, action)"))
 inline fun <T> Iterable<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
-    toList().joinToString(empty, separator, action)
+    joinToString(empty, separator, action)
 
 @Deprecated("Misleading name. Replace `joinToString`.", ReplaceWith("this.joinToString(empty, separator, action)"))
 inline fun <T> Array<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
-    toList().joinToString(empty, separator, action)
+    joinToString(empty, separator, action)
 
 
 inline fun <T> Collection<T>.joinToString(empty: String, separator: String = ", ", action: (T) -> String) =
     if (this.isNotEmpty()) {
         buildString {
             for (i in this@joinToString.indices)
-                append(
-                    "${action(this@joinToString.elementAt(i))}${
-                        (i < this@joinToString.size - 1).getValue(
-                            separator,
-                            ""
-                        )
-                    }"
-                )
+                append("${action(this@joinToString.elementAt(i))}${if (i < this@joinToString.size - 1) separator else ""}")
         }.trim()
     } else {
         empty
