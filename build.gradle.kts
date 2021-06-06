@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.4.32"
+    kotlin("jvm") version "1.5.10"
     maven
 }
 
 group = "jp.aoichaan0513"
-version = "1.1.10"
+version = "1.2.0"
 
 repositories {
     mavenCentral()
@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("joda-time", "joda-time", "2.10.8")
+    implementation("joda-time", "joda-time", "2.10.10")
 }
 
 java {
