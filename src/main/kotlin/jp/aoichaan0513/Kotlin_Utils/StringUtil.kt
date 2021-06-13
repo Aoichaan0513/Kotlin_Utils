@@ -134,3 +134,35 @@ inline fun <T> Iterable<T>.joinToString(empty: String, separator: String = ", ",
 
 inline fun <T> Array<T>.joinToString(empty: String, separator: String = ", ", action: (T) -> String) =
     toList().joinToString(empty, separator, action)
+
+
+inline fun <T> Collection<T>.joinToStringTrim(
+    length: Int,
+    empty: String,
+    separator: String = ", ",
+    truncated: String = "…",
+    action: (T) -> String
+) = joinToString(empty, separator) { action(it) }.let {
+    if (it.length > length) {
+        val l = it.substring(0, length - truncated.length).lastIndexOf(separator.trim())
+        "${it.substring(0, l).trim()}$truncated"
+    } else {
+        it
+    }
+}
+
+inline fun <T> Iterable<T>.joinToStringTrim(
+    length: Int,
+    empty: String,
+    separator: String = ", ",
+    truncated: String = "…",
+    action: (T) -> String
+) = toList().joinToStringTrim(length, empty, separator, truncated, action)
+
+inline fun <T> Array<T>.joinToStringTrim(
+    length: Int,
+    empty: String,
+    separator: String = ", ",
+    truncated: String = "…",
+    action: (T) -> String
+) = toList().joinToStringTrim(length, empty, separator, truncated, action)
