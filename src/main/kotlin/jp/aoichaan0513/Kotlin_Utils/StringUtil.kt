@@ -94,55 +94,43 @@ fun String.replace(iterable: Iterable<Pair<String, String>>) = replace(iterable.
 fun String.replace(vararg pairs: Pair<String, String>) = replace(pairs.toMap())
 
 
-@Deprecated(
-    "Misleading name. Replace `joinToString`.",
-    ReplaceWith("this.joinToString(empty, separator, action)"),
-    DeprecationLevel.ERROR
-)
-inline fun <T> Collection<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
-    joinToString(empty, separator, action)
-
-@Deprecated(
-    "Misleading name. Replace `joinToString`.",
-    ReplaceWith("this.joinToString(empty, separator, action)"),
-    DeprecationLevel.ERROR
-)
-inline fun <T> Iterable<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
-    joinToString(empty, separator, action)
-
-@Deprecated(
-    "Misleading name. Replace `joinToString`.",
-    ReplaceWith("this.joinToString(empty, separator, action)"),
-    DeprecationLevel.ERROR
-)
-inline fun <T> Array<T>.toString(action: (T) -> String, empty: String, separator: String = ", ") =
-    joinToString(empty, separator, action)
-
-
-inline fun <T> Collection<T>.joinToString(empty: String, separator: String = ", ", action: (T) -> String) =
+fun <T> Collection<T>.joinToString(empty: String, separator: String = ", ", action: ((T) -> String)? = null) =
     if (this.isNotEmpty()) {
         buildString {
+            for ((index, element) in this@joinToString.withIndex()) {
+                append(
+                    when {
+                        action != null -> action(element)
+                        element is CharSequence? || element is Char -> element
+                        else -> element.toString()
+                    }
+                )
+                append(if (index < this@joinToString.size - 1) separator else "")
+            }
+
+            /*
             for (i in this@joinToString.indices)
                 append("${action(this@joinToString.elementAt(i))}${if (i < this@joinToString.size - 1) separator else ""}")
+            */
         }.trim()
     } else {
         empty
     }
 
-inline fun <T> Iterable<T>.joinToString(empty: String, separator: String = ", ", action: (T) -> String) =
+fun <T> Iterable<T>.joinToString(empty: String, separator: String = ", ", action: ((T) -> String)? = null) =
     toList().joinToString(empty, separator, action)
 
-inline fun <T> Array<T>.joinToString(empty: String, separator: String = ", ", action: (T) -> String) =
+fun <T> Array<T>.joinToString(empty: String, separator: String = ", ", action: ((T) -> String)? = null) =
     toList().joinToString(empty, separator, action)
 
 
-inline fun <T> Collection<T>.joinToStringTrim(
+fun <T> Collection<T>.joinToStringTrim(
     length: Int,
     empty: String,
     separator: String = ", ",
     truncated: String = "…",
     action: (T) -> String
-) = joinToString(empty, separator) { action(it) }.let {
+) = joinToString(empty, separator, action).let {
     if (it.length > length) {
         val l = it.substring(0, length - truncated.length).lastIndexOf(separator.trim())
         "${it.substring(0, l).trim()}$truncated"
@@ -151,7 +139,7 @@ inline fun <T> Collection<T>.joinToStringTrim(
     }
 }
 
-inline fun <T> Iterable<T>.joinToStringTrim(
+fun <T> Iterable<T>.joinToStringTrim(
     length: Int,
     empty: String,
     separator: String = ", ",
@@ -159,7 +147,7 @@ inline fun <T> Iterable<T>.joinToStringTrim(
     action: (T) -> String
 ) = toList().joinToStringTrim(length, empty, separator, truncated, action)
 
-inline fun <T> Array<T>.joinToStringTrim(
+fun <T> Array<T>.joinToStringTrim(
     length: Int,
     empty: String,
     separator: String = ", ",

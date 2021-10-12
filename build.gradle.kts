@@ -1,20 +1,25 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val kotlinVersion: String by extra("1.5.31")
+
 plugins {
-    kotlin("jvm") version "1.5.20"
+    kotlin("jvm") version "1.5.31"
     maven
 }
 
 group = "jp.aoichaan0513"
-version = "1.2.2"
+version = "1.3.0"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
-    implementation("joda-time", "joda-time", "2.10.10")
+    implementation(kotlin("stdlib", kotlinVersion))
+    implementation(kotlin("script-util", kotlinVersion))
+    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.5.2")
+
+    implementation("joda-time", "joda-time", "2.10.12")
 }
 
 java {
