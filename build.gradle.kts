@@ -17,7 +17,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib", kotlinVersion))
     implementation(kotlin("script-util", kotlinVersion))
-    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.6.1")
+    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.6.3")
 
     implementation("joda-time", "joda-time", "2.10.14")
 }
