@@ -80,18 +80,26 @@ fun String.trim(l: Int, truncated: String = "…") =
     if (length > l) "${substring(0, l - truncated.length)}$truncated" else this
 
 
-fun String.replace(map: Map<String, String>): String {
+fun String.replace(map: Map<String, String?>): String {
     var s = this
 
-    for ((key, value) in map)
-        s = s.replace(key, value)
+    for ((key, value) in map.filterValues { !it.isNullOrBlank() })
+        s = s.replace(key, value!!)
 
     return s
 }
 
-fun String.replace(collection: Collection<Pair<String, String>>) = replace(collection.toMap())
-fun String.replace(iterable: Iterable<Pair<String, String>>) = replace(iterable.toMap())
-fun String.replace(vararg pairs: Pair<String, String>) = replace(pairs.toMap())
+fun String.replace(collection: Collection<Pair<String, String?>?>): String {
+    var s = this
+
+    for ((key, value) in collection.filterNotNull().filter { !it.second.isNullOrBlank() })
+        s = s.replace(key, value!!)
+
+    return s
+}
+
+fun String.replace(iterable: Iterable<Pair<String, String?>?>) = replace(iterable.toList())
+fun String.replace(vararg pairs: Pair<String, String?>?) = replace(pairs.toList())
 
 
 fun <T> Collection<T>.joinToString(empty: String, separator: String = ", ", action: ((T) -> String)? = null) =
