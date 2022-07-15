@@ -159,8 +159,7 @@ class DateTimeUtil {
 
     companion object {
 
-        val DEFAULT_ZONE_ID
-            get() = ZoneId.systemDefault()
+        var DEFAULT_ZONE_ID = ZoneId.systemDefault()
         var DEFAULT_PATTERN = "yyyy/MM/dd HH:mm:ss"
 
         fun formatTimestamp(l: Long, isMilliSeconds: Boolean = false) = Timestamp(
