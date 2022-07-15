@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
 
-
 /**
  * Get formatted datetime string.
  *
