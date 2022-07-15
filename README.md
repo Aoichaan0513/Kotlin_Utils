@@ -9,8 +9,8 @@ repositories {
 }
 
 dependencies {
-    // implementation 'jp.aoichaan0513:Kotlin_Utils:1.4.3'
-    implementation group: 'jp.aoichaan0513', name: 'Kotlin_Utils', version: '1.4.3'
+    // implementation 'jp.aoichaan0513:Kotlin_Utils:1.5.0'
+    implementation group: 'jp.aoichaan0513', name: 'Kotlin_Utils', version: '1.5.0'
 }
 ```
 
@@ -22,8 +22,8 @@ repositories {
 }
 
 dependencies {
-    // implementation("jp.aoichaan0513:Kotlin_Utils:1.4.3")
-    implementation("jp.aoichaan0513", "Kotlin_Utils", "1.4.3")
+    // implementation("jp.aoichaan0513:Kotlin_Utils:1.5.0")
+    implementation("jp.aoichaan0513", "Kotlin_Utils", "1.5.0")
 }
 ```
 
