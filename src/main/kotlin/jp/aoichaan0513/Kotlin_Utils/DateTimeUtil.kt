@@ -10,10 +10,6 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
 
-val DEFAULT_ZONE_ID
-    get() = ZoneId.systemDefault()
-val DEFAULT_PATTERN = "yyyy/MM/dd HH:mm"
-
 
 /**
  * Get formatted datetime string.
@@ -23,7 +19,10 @@ val DEFAULT_PATTERN = "yyyy/MM/dd HH:mm"
  *
  * @author Aoichaan0513
  */
-fun DateTime.getFormattedDateTime(zoneId: ZoneId = DEFAULT_ZONE_ID, pattern: String = DEFAULT_PATTERN) =
+fun DateTime.getFormattedDateTime(
+    zoneId: ZoneId = DateTimeUtil.DEFAULT_ZONE_ID,
+    pattern: String = DateTimeUtil.DEFAULT_PATTERN
+) =
     DateTimeFormat.forPattern(pattern).withZone(DateTimeZone.forID(zoneId.id)).print(this)
 
 /**
@@ -34,7 +33,10 @@ fun DateTime.getFormattedDateTime(zoneId: ZoneId = DEFAULT_ZONE_ID, pattern: Str
  *
  * @author Aoichaan0513
  */
-fun LocalDate.getFormattedDateTime(zoneId: ZoneId = DEFAULT_ZONE_ID, pattern: String = DEFAULT_PATTERN) =
+fun LocalDate.getFormattedDateTime(
+    zoneId: ZoneId = DateTimeUtil.DEFAULT_ZONE_ID,
+    pattern: String = DateTimeUtil.DEFAULT_PATTERN
+) =
     atStartOfDay(zoneId).getFormattedDateTime(zoneId, pattern)
 
 /**
@@ -45,7 +47,10 @@ fun LocalDate.getFormattedDateTime(zoneId: ZoneId = DEFAULT_ZONE_ID, pattern: St
  *
  * @author Aoichaan0513
  */
-fun LocalDateTime.getFormattedDateTime(zoneId: ZoneId = DEFAULT_ZONE_ID, pattern: String = DEFAULT_PATTERN) =
+fun LocalDateTime.getFormattedDateTime(
+    zoneId: ZoneId = DateTimeUtil.DEFAULT_ZONE_ID,
+    pattern: String = DateTimeUtil.DEFAULT_PATTERN
+) =
     atZone(zoneId).getFormattedDateTime(zoneId, pattern)
 
 /**
@@ -56,7 +61,10 @@ fun LocalDateTime.getFormattedDateTime(zoneId: ZoneId = DEFAULT_ZONE_ID, pattern
  *
  * @author Aoichaan0513
  */
-fun OffsetDateTime.getFormattedDateTime(zoneId: ZoneId = DEFAULT_ZONE_ID, pattern: String = DEFAULT_PATTERN) =
+fun OffsetDateTime.getFormattedDateTime(
+    zoneId: ZoneId = DateTimeUtil.DEFAULT_ZONE_ID,
+    pattern: String = DateTimeUtil.DEFAULT_PATTERN
+) =
     atZoneSameInstant(zoneId).getFormattedDateTime(zoneId, pattern)
 
 /**
@@ -67,7 +75,10 @@ fun OffsetDateTime.getFormattedDateTime(zoneId: ZoneId = DEFAULT_ZONE_ID, patter
  *
  * @author Aoichaan0513
  */
-fun ZonedDateTime.getFormattedDateTime(zoneId: ZoneId = DEFAULT_ZONE_ID, pattern: String = DEFAULT_PATTERN) =
+fun ZonedDateTime.getFormattedDateTime(
+    zoneId: ZoneId = DateTimeUtil.DEFAULT_ZONE_ID,
+    pattern: String = DateTimeUtil.DEFAULT_PATTERN
+) =
     withZoneSameInstant(zoneId).format(DateTimeFormatter.ofPattern(pattern))
 
 
@@ -148,6 +159,11 @@ fun ZonedDateTime.getDifference(
 class DateTimeUtil {
 
     companion object {
+
+        val DEFAULT_ZONE_ID
+            get() = ZoneId.systemDefault()
+        var DEFAULT_PATTERN = "yyyy/MM/dd HH:mm:ss"
+
         fun formatTimestamp(l: Long, isMilliSeconds: Boolean = false) = Timestamp(
             if (isMilliSeconds) l / (1000 * 60 * 60) % 24 else l / 3600,
             if (isMilliSeconds) l / (1000 * 60) % 60 else (l % 3600) / 60,
