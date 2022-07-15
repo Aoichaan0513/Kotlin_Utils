@@ -76,8 +76,20 @@ fun String.toBigInteger(defaultValue: BigInteger = 0.toBigInteger()) = toBigInte
 fun String.toBigDecimal(defaultValue: BigDecimal = 0.0.toBigDecimal()) = toBigDecimalOrNull() ?: defaultValue
 
 
+@Deprecated("Deprecated method.", ReplaceWith("this.truncate(l, truncated = truncated)"), DeprecationLevel.ERROR)
 fun String.trim(l: Int, truncated: String = "…") =
     if (length > l) "${substring(0, l - truncated.length)}$truncated" else this
+
+fun String.truncate(length: Int, separator: String? = null, truncated: String = "…") = if (this.length > length) {
+    val text = substring(0, length - truncated.length)
+    if (!separator.isNullOrBlank()) {
+        "${substring(0, text.lastIndexOf(separator)).trim()}$truncated"
+    } else {
+        "$text$truncated"
+    }
+} else {
+    this
+}
 
 
 fun String.replace(map: Map<String, String?>): String {
@@ -113,13 +125,9 @@ fun <T> Collection<T>.joinToString(empty: String, separator: String = ", ", acti
                         else -> element.toString()
                     }
                 )
-                append(if (index < this@joinToString.size - 1) separator else "")
+                if (index < this@joinToString.size - 1)
+                    append(separator)
             }
-
-            /*
-            for (i in this@joinToString.indices)
-                append("${action(this@joinToString.elementAt(i))}${if (i < this@joinToString.size - 1) separator else ""}")
-            */
         }.trim()
     } else {
         empty
