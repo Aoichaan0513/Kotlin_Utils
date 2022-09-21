@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "jp.aoichaan0513"
-version = "1.5.2"
+version = "1.5.3"
 
 repositories {
     mavenCentral()
@@ -18,7 +18,7 @@ dependencies {
     implementation(kotlin("stdlib", kotlinVersion))
     implementation(kotlin("script-util", kotlinVersion))
 
-    implementation("joda-time", "joda-time", "2.10.14")
+    implementation("joda-time", "joda-time", "2.11.1")
 }
 
 java {
