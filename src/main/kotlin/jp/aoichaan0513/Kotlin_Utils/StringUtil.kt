@@ -75,6 +75,8 @@ fun String.toBigInteger(defaultValue: BigInteger = 0.toBigInteger()) = toBigInte
 
 fun String.toBigDecimal(defaultValue: BigDecimal = 0.0.toBigDecimal()) = toBigDecimalOrNull() ?: defaultValue
 
+fun String.ansi() = Ansi(this)
+
 
 @Deprecated("Deprecated method.", ReplaceWith("this.truncate(l, truncated = truncated)"), DeprecationLevel.ERROR)
 fun String.trim(l: Int, truncated: String = "…") =
