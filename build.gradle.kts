@@ -18,7 +18,7 @@ dependencies {
     implementation(kotlin("stdlib", kotlinVersion))
     implementation(kotlin("script-util", kotlinVersion))
 
-    implementation("joda-time", "joda-time", "2.11.1")
+    implementation("joda-time", "joda-time", "2.12.2")
 }
 
 java {
