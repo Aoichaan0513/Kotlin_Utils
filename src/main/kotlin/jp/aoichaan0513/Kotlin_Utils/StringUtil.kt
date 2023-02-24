@@ -78,10 +78,6 @@ fun String.toBigDecimal(defaultValue: BigDecimal = 0.0.toBigDecimal()) = toBigDe
 fun String.ansi() = Ansi(this)
 
 
-@Deprecated("Deprecated method.", ReplaceWith("this.truncate(l, truncated = truncated)"), DeprecationLevel.ERROR)
-fun String.trim(l: Int, truncated: String = "…") =
-    if (length > l) "${substring(0, l - truncated.length)}$truncated" else this
-
 fun String.truncate(length: Int, separator: String? = null, truncated: String = "…") = if (this.length > length) {
     val text = substring(0, length - truncated.length)
     if (!separator.isNullOrBlank()) {
