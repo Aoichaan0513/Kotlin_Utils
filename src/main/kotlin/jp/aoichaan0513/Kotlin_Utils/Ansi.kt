@@ -4,29 +4,29 @@ class Ansi(private val input: String) {
 
     companion object {
 
-        val RESET = "\u001B[0m"
+        const val RESET = "\u001B[0m"
 
-        val BOLD = "\u001B[1m"
-        val ITALIC = "\u001B[3m"
-        val UNDERLINE = "\u001B[4m"
+        const val BOLD = "\u001B[1m"
+        const val ITALIC = "\u001B[3m"
+        const val UNDERLINE = "\u001B[4m"
 
-        val FOREGROUND_BLACK = "\u001B[30m"
-        val FOREGROUND_RED = "\u001B[31m"
-        val FOREGROUND_GREEN = "\u001B[32m"
-        val FOREGROUND_YELLOW = "\u001B[33m"
-        val FOREGROUND_BLUE = "\u001B[34m"
-        val FOREGROUND_MAGENTA = "\u001B[35m"
-        val FOREGROUND_CYAN = "\u001B[36m"
-        val FOREGROUND_WHITE = "\u001B[37m"
+        const val FOREGROUND_BLACK = "\u001B[30m"
+        const val FOREGROUND_RED = "\u001B[31m"
+        const val FOREGROUND_GREEN = "\u001B[32m"
+        const val FOREGROUND_YELLOW = "\u001B[33m"
+        const val FOREGROUND_BLUE = "\u001B[34m"
+        const val FOREGROUND_MAGENTA = "\u001B[35m"
+        const val FOREGROUND_CYAN = "\u001B[36m"
+        const val FOREGROUND_WHITE = "\u001B[37m"
 
-        val BACKGROUND_BLACK = "\u001B[40m"
-        val BACKGROUND_RED = "\u001B[41m"
-        val BACKGROUND_GREEN = "\u001B[42m"
-        val BACKGROUND_YELLOW = "\u001B[43m"
-        val BACKGROUND_BLUE = "\u001B[44m"
-        val BACKGROUND_MAGENTA = "\u001B[45m"
-        val BACKGROUND_CYAN = "\u001B[46m"
-        val BACKGROUND_WHITE = "\u001B[47m"
+        const val BACKGROUND_BLACK = "\u001B[40m"
+        const val BACKGROUND_RED = "\u001B[41m"
+        const val BACKGROUND_GREEN = "\u001B[42m"
+        const val BACKGROUND_YELLOW = "\u001B[43m"
+        const val BACKGROUND_BLUE = "\u001B[44m"
+        const val BACKGROUND_MAGENTA = "\u001B[45m"
+        const val BACKGROUND_CYAN = "\u001B[46m"
+        const val BACKGROUND_WHITE = "\u001B[47m"
     }
 
     fun reset() = Ansi("$RESET$input")

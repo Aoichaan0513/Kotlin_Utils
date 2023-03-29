@@ -21,8 +21,7 @@ import java.util.*
 fun DateTime.getFormattedDateTime(
     zoneId: ZoneId = DateTimeUtil.DEFAULT_ZONE_ID,
     pattern: String = DateTimeUtil.DEFAULT_PATTERN
-) =
-    DateTimeFormat.forPattern(pattern).withZone(DateTimeZone.forID(zoneId.id)).print(this)
+): String = DateTimeFormat.forPattern(pattern).withZone(DateTimeZone.forID(zoneId.id)).print(this)
 
 /**
  * Get formatted datetime string.
@@ -35,8 +34,7 @@ fun DateTime.getFormattedDateTime(
 fun LocalDate.getFormattedDateTime(
     zoneId: ZoneId = DateTimeUtil.DEFAULT_ZONE_ID,
     pattern: String = DateTimeUtil.DEFAULT_PATTERN
-) =
-    atStartOfDay(zoneId).getFormattedDateTime(zoneId, pattern)
+): String = atStartOfDay(zoneId).getFormattedDateTime(zoneId, pattern)
 
 /**
  * Get formatted datetime string.
@@ -49,8 +47,7 @@ fun LocalDate.getFormattedDateTime(
 fun LocalDateTime.getFormattedDateTime(
     zoneId: ZoneId = DateTimeUtil.DEFAULT_ZONE_ID,
     pattern: String = DateTimeUtil.DEFAULT_PATTERN
-) =
-    atZone(zoneId).getFormattedDateTime(zoneId, pattern)
+): String = atZone(zoneId).getFormattedDateTime(zoneId, pattern)
 
 /**
  * Get formatted datetime string.
@@ -63,8 +60,7 @@ fun LocalDateTime.getFormattedDateTime(
 fun OffsetDateTime.getFormattedDateTime(
     zoneId: ZoneId = DateTimeUtil.DEFAULT_ZONE_ID,
     pattern: String = DateTimeUtil.DEFAULT_PATTERN
-) =
-    atZoneSameInstant(zoneId).getFormattedDateTime(zoneId, pattern)
+): String = atZoneSameInstant(zoneId).getFormattedDateTime(zoneId, pattern)
 
 /**
  * Get formatted datetime string.
@@ -77,8 +73,7 @@ fun OffsetDateTime.getFormattedDateTime(
 fun ZonedDateTime.getFormattedDateTime(
     zoneId: ZoneId = DateTimeUtil.DEFAULT_ZONE_ID,
     pattern: String = DateTimeUtil.DEFAULT_PATTERN
-) =
-    withZoneSameInstant(zoneId).format(DateTimeFormatter.ofPattern(pattern))
+): String = withZoneSameInstant(zoneId).format(DateTimeFormatter.ofPattern(pattern))
 
 
 /**
@@ -159,7 +154,7 @@ class DateTimeUtil {
 
     companion object {
 
-        var DEFAULT_ZONE_ID = ZoneId.systemDefault()
+        var DEFAULT_ZONE_ID: ZoneId = ZoneId.systemDefault()
         var DEFAULT_PATTERN = "yyyy/MM/dd HH:mm:ss"
 
         fun formatTimestamp(l: Long, isMilliSeconds: Boolean = false) = Timestamp(
