@@ -1,4 +1,4 @@
-package jp.aoichaan0513.kotlin_utils
+package jp.aoichaan0513.utils.kotlin
 
 import java.awt.Color
 
