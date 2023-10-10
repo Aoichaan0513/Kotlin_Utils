@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val kotlinVersion: String by extra("1.8.10")
+val kotlinVersion: String by extra("1.9.10")
 
 plugins {
-    kotlin("jvm") version "1.8.10"
+    kotlin("jvm") version "1.9.10"
     maven
 }
 
@@ -18,7 +18,7 @@ dependencies {
     implementation(kotlin("stdlib", kotlinVersion))
     implementation(kotlin("script-util", kotlinVersion))
 
-    implementation("joda-time", "joda-time", "2.12.2")
+    implementation("joda-time", "joda-time", "2.12.5")
 }
 
 java {
