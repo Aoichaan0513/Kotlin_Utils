@@ -5,12 +5,12 @@ Kotlin Utilities library.
 ### Gradle DSL
 ```gradle
 repositories {
-    maven { url 'https://repository.aoichaan0513.jp' }
+    maven { url 'https://raw.githubusercontent.com/Aoichaan0513/repository/main' }
 }
 
 dependencies {
-    // implementation 'jp.aoichaan0513:Kotlin_Utils:1.5.2'
-    implementation group: 'jp.aoichaan0513', name: 'Kotlin_Utils', version: '1.5.2'
+    // implementation 'jp.aoichaan0513:Kotlin_Utils:1.7.1'
+    implementation group: 'jp.aoichaan0513', name: 'Kotlin_Utils', version: '1.7.1'
 }
 ```
 
@@ -18,12 +18,12 @@ dependencies {
 
 ```gradle
 repositories {
-    maven("https://repository.aoichaan0513.jp")
+    maven("https://raw.githubusercontent.com/Aoichaan0513/repository/main")
 }
 
 dependencies {
-    // implementation("jp.aoichaan0513:Kotlin_Utils:1.5.2")
-    implementation("jp.aoichaan0513", "Kotlin_Utils", "1.5.2")
+    // implementation("jp.aoichaan0513:Kotlin_Utils:1.7.1")
+    implementation("jp.aoichaan0513", "Kotlin_Utils", "1.7.1")
 }
 ```
 
