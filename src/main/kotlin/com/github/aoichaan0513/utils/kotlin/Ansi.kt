@@ -1,4 +1,4 @@
-package jp.aoichaan0513.utils.kotlin
+package com.github.aoichaan0513.utils.kotlin
 
 class Ansi(private val input: String) {
 
