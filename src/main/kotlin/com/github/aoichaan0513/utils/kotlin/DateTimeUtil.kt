@@ -1,6 +1,6 @@
 @file:Suppress("MemberVisibilityCanBePrivate")
 
-package jp.aoichaan0513.utils.kotlin
+package com.github.aoichaan0513.utils.kotlin
 
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone

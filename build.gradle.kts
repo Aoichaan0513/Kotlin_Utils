@@ -1,23 +1,19 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val kotlinVersion = "1.9.21"
-
 plugins {
-    kotlin("jvm") version "1.9.21"
-    maven
+    kotlin("jvm") version "2.0.10"
+    id("maven-publish")
 }
 
-group = "jp.aoichaan0513"
-version = "1.7.1"
+group = "com.github.aoichaan0513"
+version = "2.0.10_1"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(kotlin("stdlib", kotlinVersion))
-
-    implementation("joda-time", "joda-time", "2.12.5")
+    implementation("joda-time", "joda-time", "2.12.7")
 }
 
 java {
@@ -28,29 +24,22 @@ java {
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
 
-val repo = File(rootDir, "repository")
-val uploadArchives: Upload by tasks
-uploadArchives.repositories.withConvention(MavenRepositoryHandlerConvention::class) {
-    mavenDeployer {
-        withGroovyBuilder {
-            "repository"("url" to uri("file://${repo.absolutePath}"))
-        }
-
-        pom.project {
-            withGroovyBuilder {
-                "parent" {
-                    "groupId"(group)
-                    "artifactId"(rootProject.name)
-                    "version"(version)
-                }
-            }
-        }
-    }
-}
-
 val sourcesJar: Jar by tasks
 val javadocJar: Jar by tasks
 artifacts {
     archives(sourcesJar)
     archives(javadocJar)
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                from(components["kotlin"])
+                groupId = this@afterEvaluate.group.toString()
+                artifactId = rootProject.name
+                version = this@afterEvaluate.version.toString()
+            }
+        }
+    }
 }

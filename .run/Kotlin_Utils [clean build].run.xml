@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-    <configuration default="false" name="Kotlin_Utils [clean build uploadArchives]" type="GradleRunConfiguration"
-                   factoryName="Gradle" nameIsGenerated="true">
+    <configuration default="false" name="Kotlin_Utils [clean build]" type="GradleRunConfiguration" factoryName="Gradle"
+                   nameIsGenerated="true">
         <ExternalSystemSettings>
             <option name="executionName"/>
             <option name="externalProjectPath" value="$PROJECT_DIR$"/>
@@ -13,7 +13,6 @@
                 <list>
                     <option value="clean"/>
                     <option value="build"/>
-                    <option value="uploadArchives"/>
                 </list>
             </option>
             <option name="vmOptions"/>
@@ -21,6 +20,7 @@
         <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
         <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
         <DebugAllEnabled>false</DebugAllEnabled>
+        <RunAsTest>false</RunAsTest>
         <method v="2"/>
     </configuration>
 </component>
