@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation("joda-time", "joda-time", "2.12.7")
+    implementation("joda-time", "joda-time", "2.13.0")
 }
 
 java {
